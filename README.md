@@ -1,11 +1,13 @@
-# api documentation for  [watchify (v3.9.0)](https://github.com/substack/watchify)  [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-watchify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-watchify)
+# api documentation for  [watchify (v3.9.0)](https://github.com/substack/watchify)  [![npm package](https://img.shields.io/npm/v/npmdoc-watchify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-watchify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-watchify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-watchify)
 #### watch mode for browserify builds
 
 [![NPM](https://nodei.co/npm/watchify.png?downloads=true)](https://www.npmjs.com/package/watchify)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-watchify/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-watchify_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-watchify/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-watchify_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-watchify/build/apidoc.html)
 
-![package-listing](https://npmdoc.github.io/node-npmdoc-watchify/build/screen-capture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
