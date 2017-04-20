@@ -1,9 +1,14 @@
-# api documentation for  [watchify (v3.9.0)](https://github.com/substack/watchify)  [![npm package](https://img.shields.io/npm/v/npmdoc-watchify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-watchify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-watchify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-watchify)
+# npmdoc-watchify
+
+#### api documentation for  [watchify (v3.9.0)](https://github.com/substack/watchify)  [![npm package](https://img.shields.io/npm/v/npmdoc-watchify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-watchify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-watchify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-watchify)
+
 #### watch mode for browserify builds
 
-[![NPM](https://nodei.co/npm/watchify.png?downloads=true)](https://www.npmjs.com/package/watchify)
+[![NPM](https://nodei.co/npm/watchify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/watchify)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-watchify_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-watchify/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-watchify/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-watchify/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-watchify/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-watchify/build/screenCapture.npmPackageListing.svg)
 
@@ -16,17 +21,11 @@
 ```json
 
 {
-    "author": {
-        "name": "James Halliday",
-        "email": "mail@substack.net",
-        "url": "http://substack.net"
-    },
-    "bin": {
-        "watchify": "bin/cmd.js"
-    },
-    "bugs": {
-        "url": "https://github.com/substack/watchify/issues"
-    },
+    "name": "watchify",
+    "version": "3.9.0",
+    "description": "watch mode for browserify builds",
+    "main": "index.js",
+    "bin": "bin/cmd.js",
     "dependencies": {
         "anymatch": "^1.3.0",
         "browserify": "^14.0.0",
@@ -36,7 +35,6 @@
         "through2": "^2.0.0",
         "xtend": "^4.0.0"
     },
-    "description": "watch mode for browserify builds",
     "devDependencies": {
         "brfs": "^1.0.1",
         "mkdirp": "~0.5.1",
@@ -45,12 +43,13 @@
         "uglify-js": "^2.5.0",
         "win-spawn": "^2.0.0"
     },
-    "directories": {},
-    "dist": {
-        "shasum": "f075fd2e8a86acde84cedba6e5c2a0bedd523d9e",
-        "tarball": "https://registry.npmjs.org/watchify/-/watchify-3.9.0.tgz"
+    "scripts": {
+        "test": "tape test/*.js"
     },
-    "gitHead": "f768b433774652d6b5257cd342e4353f81760637",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/substack/watchify.git"
+    },
     "homepage": "https://github.com/substack/watchify",
     "keywords": [
         "browserify",
@@ -60,50 +59,13 @@
         "build",
         "browser"
     ],
-    "license": "MIT",
-    "main": "index.js",
-    "maintainers": [
-        {
-            "name": "feross",
-            "email": "feross@feross.org"
-        },
-        {
-            "name": "mafintosh",
-            "email": "mathiasbuus@gmail.com"
-        },
-        {
-            "name": "substack",
-            "email": "substack@gmail.com"
-        },
-        {
-            "name": "zertosh",
-            "email": "zertosh@gmail.com"
-        }
-    ],
-    "name": "watchify",
-    "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/substack/watchify.git"
+    "author": {
+        "name": "James Halliday",
+        "url": "http://substack.net"
     },
-    "scripts": {
-        "test": "tape test/*.js"
-    },
-    "version": "3.9.0"
+    "license": "MIT"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module watchify](#apidoc.module.watchify)
-1.  object <span class="apidocSignatureSpan">watchify.</span>args
-
-
-
-# <a name="apidoc.module.watchify"></a>[module watchify](#apidoc.module.watchify)
 
 
 
