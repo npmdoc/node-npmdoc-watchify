@@ -9,7 +9,7 @@
 <tspan x="10" y="106">  │ ├── arrify@1.0.1 </tspan>
 <tspan x="10" y="122">  │ └─┬ micromatch@2.3.11 </tspan>
 <tspan x="10" y="138">  │   ├─┬ arr-diff@2.0.0 </tspan>
-<tspan x="10" y="154">  │   │ └── arr-flatten@1.0.1 </tspan>
+<tspan x="10" y="154">  │   │ └── arr-flatten@1.0.3 </tspan>
 <tspan x="10" y="170">  │   ├── array-unique@0.2.1 </tspan>
 <tspan x="10" y="186">  │   ├─┬ braces@1.8.5 </tspan>
 <tspan x="10" y="202">  │   │ ├─┬ expand-range@1.8.2 </tspan>
@@ -74,7 +74,7 @@
 <tspan x="10" y="1146">  │ │ │ ├─┬ elliptic@6.4.0 </tspan>
 <tspan x="10" y="1162">  │ │ │ │ ├── brorand@1.1.0 </tspan>
 <tspan x="10" y="1178">  │ │ │ │ ├── hash.js@1.0.3 </tspan>
-<tspan x="10" y="1194">  │ │ │ │ ├── hmac-drbg@1.0.0 </tspan>
+<tspan x="10" y="1194">  │ │ │ │ ├── hmac-drbg@1.0.1 </tspan>
 <tspan x="10" y="1210">  │ │ │ │ ├── minimalistic-assert@1.0.0 </tspan>
 <tspan x="10" y="1226">  │ │ │ │ └── minimalistic-crypto-utils@1.0.1 </tspan>
 <tspan x="10" y="1242">  │ │ │ └─┬ parse-asn1@5.1.0 </tspan>
@@ -128,14 +128,14 @@
 <tspan x="10" y="2010">  │ ├── punycode@1.4.1 </tspan>
 <tspan x="10" y="2026">  │ ├── querystring-es3@0.2.1 </tspan>
 <tspan x="10" y="2042">  │ ├── read-only-stream@2.0.0 </tspan>
-<tspan x="10" y="2058">  │ ├─┬ readable-stream@2.2.8 </tspan>
+<tspan x="10" y="2058">  │ ├─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="2074">  │ │ ├── buffer-shims@1.0.0 </tspan>
 <tspan x="10" y="2090">  │ │ ├── core-util-is@1.0.2 </tspan>
 <tspan x="10" y="2106">  │ │ ├── isarray@1.0.0 </tspan>
 <tspan x="10" y="2122">  │ │ ├── process-nextick-args@1.0.7 </tspan>
 <tspan x="10" y="2138">  │ │ ├── string_decoder@1.0.0 </tspan>
 <tspan x="10" y="2154">  │ │ └── util-deprecate@1.0.2 </tspan>
-<tspan x="10" y="2170">  │ ├─┬ resolve@1.3.2 </tspan>
+<tspan x="10" y="2170">  │ ├─┬ resolve@1.3.3 </tspan>
 <tspan x="10" y="2186">  │ │ └── path-parse@1.0.5 </tspan>
 <tspan x="10" y="2202">  │ ├─┬ shasum@1.0.2 </tspan>
 <tspan x="10" y="2218">  │ │ ├── json-stable-stringify@0.0.1 </tspan>

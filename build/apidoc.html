@@ -63,6 +63,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.watchify.watchify">
+            function <span class="apidocSignatureSpan"></span>watchify
+            <span class="apidocSignatureSpan">(b, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">watchify.</span>args</span>
 
         </li>
@@ -73,6 +82,163 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.watchify" id="apidoc.module.watchify">module watchify</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.watchify.watchify" id="apidoc.element.watchify.watchify">
+        function <span class="apidocSignatureSpan"></span>watchify
+        <span class="apidocSignatureSpan">(b, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function watchify(b, opts) {
+    if (!opts) opts = {};
+    var cache = b._options.cache;
+    var pkgcache = b._options.packageCache;
+    var delay = typeof opts.delay === &#x27;number&#x27; ? opts.delay : 100;
+    var changingDeps = {};
+    var pending = false;
+    var updating = false;
+
+    var wopts = {persistent: true};
+    if (opts.ignoreWatch) {
+        var ignored = opts.ignoreWatch !== true
+            ? opts.ignoreWatch
+            : &#x27;**/node_modules/**&#x27;;
+    }
+    if (opts.poll || typeof opts.poll === &#x27;number&#x27;) {
+        wopts.usePolling = true;
+        wopts.interval = opts.poll !== true
+            ? opts.poll
+            : undefined;
+    }
+
+    if (cache) {
+        b.on(&#x27;reset&#x27;, collect);
+        collect();
+    }
+
+    function collect () {
+        b.pipeline.get(&#x27;deps&#x27;).push(through.obj(function(row, enc, next) {
+            var file = row.expose ? b._expose[row.id] : row.file;
+            cache[file] = {
+                source: row.source,
+                deps: xtend(row.deps)
+            };
+            this.push(row);
+            next();
+        }));
+    }
+
+    b.on(&#x27;file&#x27;, function (file) {
+        watchFile(file);
+    });
+
+    b.on(&#x27;package&#x27;, function (pkg) {
+        var file = path.join(pkg.__dirname, &#x27;package.json&#x27;);
+        watchFile(file);
+        if (pkgcache) pkgcache[file] = pkg;
+    });
+
+    b.on(&#x27;reset&#x27;, reset);
+    reset();
+
+    function reset () {
+        var time = null;
+        var bytes = 0;
+        b.pipeline.get(&#x27;record&#x27;).on(&#x27;end&#x27;, function () {
+            time = Date.now();
+        });
+
+        b.pipeline.get(&#x27;wrap&#x27;).push(through(write, end));
+        function write (buf, enc, next) {
+            bytes += buf.length;
+            this.push(buf);
+            next();
+        }
+        function end () {
+            var delta = Date.now() - time;
+            b.emit(&#x27;time&#x27;, delta);
+            b.emit(&#x27;bytes&#x27;, bytes);
+            b.emit(&#x27;log&#x27;, bytes + &#x27; bytes written (&#x27;
+                + (delta / 1000).toFixed(2) + &#x27; seconds)&#x27;
+            );
+            this.push(null);
+        }
+    }
+
+    var fwatchers = {};
+    var fwatcherFiles = {};
+    var ignoredFiles = {};
+
+    b.on(&#x27;transform&#x27;, function (tr, mfile) {
+        tr.on(&#x27;file&#x27;, function (dep) {
+            watchFile(mfile, dep);
+        });
+    });
+    b.on(&#x27;bundle&#x27;, function (bundle) {
+        updating = true;
+        bundle.on(&#x27;error&#x27;, onend);
+        bundle.on(&#x27;end&#x27;, onend);
+        function onend () { updating = false }
+    });
+
+    function watchFile (file, dep) {
+        dep = dep || file;
+        if (ignored) {
+            if (!ignoredFiles.hasOwnProperty(file)) {
+                ignoredFiles[file] = anymatch(ignored, file);
+            }
+            if (ignoredFiles[file]) return;
+        }
+        if (!fwatchers[file]) fwatchers[file] = [];
+        if (!fwatcherFiles[file]) fwatcherFiles[file] = [];
+        if (fwatcherFiles[file].indexOf(dep) &#x3e;= 0) return;
+
+        var w = b._watcher(dep, wopts);
+        w.setMaxListeners(0);
+        w.on(&#x27;error&#x27;, b.emit.bind(b, &#x27;error&#x27;));
+        w.on(&#x27;change&#x27;, function () {
+            invalidate(file);
+        });
+        fwatchers[file].push(w);
+        fwatcherFiles[file].push(dep);
+    }
+
+    function invalidate (id) {
+        if (cache) delete cache[id];
+        if (pkgcache) delete pkgcache[id];
+        changingDeps[id] = true;
+
+        if (!updating &#x26;&#x26; fwatchers[id]) {
+            fwatchers[id].forEach(function (w) {
+                w.close();
+            });
+            delete fwatchers[id];
+            delete fwatcherFiles[id];
+        }
+
+        // wait for the disk/editor to quiet down first:
+        if (pending) clearTimeout(pending);
+        pending = setTimeout(notify, delay);
+    }
+
+    function notify () {
+        if (updating) {
+            pending = setTimeout(notify, delay);
+        } else {
+            pending = false;
+            b.emit(&#x27;update&#x27;, Object.keys(changingDeps));
+            changingDeps = {};
+        }
+    }
+
+    b.close = function () {
+        Object.keys(fwatchers).forEach(function (id) {
+            fwat ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 

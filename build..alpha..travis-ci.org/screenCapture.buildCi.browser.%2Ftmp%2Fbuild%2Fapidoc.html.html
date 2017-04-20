@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/substack/watchify"
-
-    >watchify (v3.9.0)</a>
+    <a href="https://github.com/substack/watchify">watchify (v3.9.0)</a>
 </h1>
 <h4>watch mode for browserify builds</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.watchify">module watchify</a><ol>
 
@@ -95,7 +88,7 @@
     if (!opts) opts = {};
     var cache = b._options.cache;
     var pkgcache = b._options.packageCache;
-    var delay = typeof opts.delay === &#x27;number&#x27; ? opts.delay : 100;
+    var delay = typeof opts.delay === 'number' ? opts.delay : 100;
     var changingDeps = {};
     var pending = false;
     var updating = false;
@@ -104,9 +97,9 @@
     if (opts.ignoreWatch) {
         var ignored = opts.ignoreWatch !== true
             ? opts.ignoreWatch
-            : &#x27;**/node_modules/**&#x27;;
+            : '**/node_modules/**';
     }
-    if (opts.poll || typeof opts.poll === &#x27;number&#x27;) {
+    if (opts.poll || typeof opts.poll === 'number') {
         wopts.usePolling = true;
         wopts.interval = opts.poll !== true
             ? opts.poll
@@ -114,12 +107,12 @@
     }
 
     if (cache) {
-        b.on(&#x27;reset&#x27;, collect);
+        b.on('reset', collect);
         collect();
     }
 
     function collect () {
-        b.pipeline.get(&#x27;deps&#x27;).push(through.obj(function(row, enc, next) {
+        b.pipeline.get('deps').push(through.obj(function(row, enc, next) {
             var file = row.expose ? b._expose[row.id] : row.file;
             cache[file] = {
                 source: row.source,
@@ -130,27 +123,27 @@
         }));
     }
 
-    b.on(&#x27;file&#x27;, function (file) {
+    b.on('file', function (file) {
         watchFile(file);
     });
 
-    b.on(&#x27;package&#x27;, function (pkg) {
-        var file = path.join(pkg.__dirname, &#x27;package.json&#x27;);
+    b.on('package', function (pkg) {
+        var file = path.join(pkg.__dirname, 'package.json');
         watchFile(file);
         if (pkgcache) pkgcache[file] = pkg;
     });
 
-    b.on(&#x27;reset&#x27;, reset);
+    b.on('reset', reset);
     reset();
 
     function reset () {
         var time = null;
         var bytes = 0;
-        b.pipeline.get(&#x27;record&#x27;).on(&#x27;end&#x27;, function () {
+        b.pipeline.get('record').on('end', function () {
             time = Date.now();
         });
 
-        b.pipeline.get(&#x27;wrap&#x27;).push(through(write, end));
+        b.pipeline.get('wrap').push(through(write, end));
         function write (buf, enc, next) {
             bytes += buf.length;
             this.push(buf);
@@ -158,10 +151,10 @@
         }
         function end () {
             var delta = Date.now() - time;
-            b.emit(&#x27;time&#x27;, delta);
-            b.emit(&#x27;bytes&#x27;, bytes);
-            b.emit(&#x27;log&#x27;, bytes + &#x27; bytes written (&#x27;
-                + (delta / 1000).toFixed(2) + &#x27; seconds)&#x27;
+            b.emit('time', delta);
+            b.emit('bytes', bytes);
+            b.emit('log', bytes + ' bytes written ('
+                + (delta / 1000).toFixed(2) + ' seconds)'
             );
             this.push(null);
         }
@@ -171,15 +164,15 @@
     var fwatcherFiles = {};
     var ignoredFiles = {};
 
-    b.on(&#x27;transform&#x27;, function (tr, mfile) {
-        tr.on(&#x27;file&#x27;, function (dep) {
+    b.on('transform', function (tr, mfile) {
+        tr.on('file', function (dep) {
             watchFile(mfile, dep);
         });
     });
-    b.on(&#x27;bundle&#x27;, function (bundle) {
+    b.on('bundle', function (bundle) {
         updating = true;
-        bundle.on(&#x27;error&#x27;, onend);
-        bundle.on(&#x27;end&#x27;, onend);
+        bundle.on('error', onend);
+        bundle.on('end', onend);
         function onend () { updating = false }
     });
 
@@ -193,12 +186,12 @@
         }
         if (!fwatchers[file]) fwatchers[file] = [];
         if (!fwatcherFiles[file]) fwatcherFiles[file] = [];
-        if (fwatcherFiles[file].indexOf(dep) &#x3e;= 0) return;
+        if (fwatcherFiles[file].indexOf(dep) &gt;= 0) return;
 
         var w = b._watcher(dep, wopts);
         w.setMaxListeners(0);
-        w.on(&#x27;error&#x27;, b.emit.bind(b, &#x27;error&#x27;));
-        w.on(&#x27;change&#x27;, function () {
+        w.on('error', b.emit.bind(b, 'error'));
+        w.on('change', function () {
             invalidate(file);
         });
         fwatchers[file].push(w);
@@ -210,7 +203,7 @@
         if (pkgcache) delete pkgcache[id];
         changingDeps[id] = true;
 
-        if (!updating &#x26;&#x26; fwatchers[id]) {
+        if (!updating &amp;&amp; fwatchers[id]) {
             fwatchers[id].forEach(function (w) {
                 w.close();
             });
@@ -228,7 +221,7 @@
             pending = setTimeout(notify, delay);
         } else {
             pending = false;
-            b.emit(&#x27;update&#x27;, Object.keys(changingDeps));
+            b.emit('update', Object.keys(changingDeps));
             changingDeps = {};
         }
     }
@@ -250,3 +243,4 @@
     ]
 </div>
 </div>
+</body></html>
